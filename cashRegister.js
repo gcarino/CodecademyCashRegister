@@ -24,22 +24,19 @@ var cashRegisterWithChange = {
             this.howManyCoins(coinName, coinAmount, coinsSoFar + 1);
         }
     },
-    makeChange: /* fill in */ {
+    makeChange: function(coinName, currency, index) {
         //fill in
+		if(index>=currency.length){
+			return;
+		}
+		else{
+			this.howManyCoins(coinName[index], currency[index], 0);
+			this.makeChange(coinName, currency, index+1);
+		}
     }
 };    
 
-//incorporate into cashRegisterWithChange then delete
-function makeChange(coinNames, currency, index) {
-	if (index >= currency.length) {
-		return;
-	} else {
-		howManyCoins(coinNames[index], currency[index], 0);
-	    makeChange(coinNames, currency, index + 1);
-	}
-}
 
-//and leave these calls to check if you get the correct output
 cashRegisterWithChange.setTotal(100);
 cashRegisterWithChange.getPaid(50);
 cashRegisterWithChange.getPaid(109.94);
